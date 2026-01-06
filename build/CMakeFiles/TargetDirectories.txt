@@ -1,0 +1,3 @@
+/Users/nicolas/Repositories/HelloTriangleOpenGL/build/CMakeFiles/OpenGLApp.dir
+/Users/nicolas/Repositories/HelloTriangleOpenGL/build/CMakeFiles/edit_cache.dir
+/Users/nicolas/Repositories/HelloTriangleOpenGL/build/CMakeFiles/rebuild_cache.dir

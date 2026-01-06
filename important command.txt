@@ -1,7 +1,3 @@
-# HelloTriangleOpenGL
-my first hello triangle made using openGL. 
-
-
 build command (make sure that the curent directory is the projectfolder and not build):
 
 cd "${fileDirname}"                                                        
