@@ -76,15 +76,15 @@ CMakeFiles/OpenGLApp.dir/src/main.cpp.o: CMakeFiles/OpenGLApp.dir/flags.make
 CMakeFiles/OpenGLApp.dir/src/main.cpp.o: /Users/nicolas/Repositories/HelloTriangleOpenGL/src/main.cpp
 CMakeFiles/OpenGLApp.dir/src/main.cpp.o: CMakeFiles/OpenGLApp.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nicolas/Repositories/HelloTriangleOpenGL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/OpenGLApp.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGLApp.dir/src/main.cpp.o -MF CMakeFiles/OpenGLApp.dir/src/main.cpp.o.d -o CMakeFiles/OpenGLApp.dir/src/main.cpp.o -c /Users/nicolas/Repositories/HelloTriangleOpenGL/src/main.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/OpenGLApp.dir/src/main.cpp.o -MF CMakeFiles/OpenGLApp.dir/src/main.cpp.o.d -o CMakeFiles/OpenGLApp.dir/src/main.cpp.o -c /Users/nicolas/Repositories/HelloTriangleOpenGL/src/main.cpp
 
 CMakeFiles/OpenGLApp.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/OpenGLApp.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nicolas/Repositories/HelloTriangleOpenGL/src/main.cpp > CMakeFiles/OpenGLApp.dir/src/main.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nicolas/Repositories/HelloTriangleOpenGL/src/main.cpp > CMakeFiles/OpenGLApp.dir/src/main.cpp.i
 
 CMakeFiles/OpenGLApp.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/OpenGLApp.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nicolas/Repositories/HelloTriangleOpenGL/src/main.cpp -o CMakeFiles/OpenGLApp.dir/src/main.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nicolas/Repositories/HelloTriangleOpenGL/src/main.cpp -o CMakeFiles/OpenGLApp.dir/src/main.cpp.s
 
 # Object files for target OpenGLApp
 OpenGLApp_OBJECTS = \
