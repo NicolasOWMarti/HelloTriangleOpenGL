@@ -1,7 +1,7 @@
 [
 {
   "directory": "/Users/nicolas/Repositories/HelloTriangleOpenGL/build",
-  "command": "/usr/bin/clang++  -I/opt/homebrew/include -I/opt/homebrew/include/GL -I/Users/nicolas/Repositories/HelloTriangleOpenGL/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/OpenGLApp.dir/src/main.cpp.o -c /Users/nicolas/Repositories/HelloTriangleOpenGL/src/main.cpp",
+  "command": "/usr/bin/c++  -I/opt/homebrew/include -I/opt/homebrew/include/GL -I/Users/nicolas/Repositories/HelloTriangleOpenGL/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -std=gnu++17 -arch arm64 -o CMakeFiles/OpenGLApp.dir/src/main.cpp.o -c /Users/nicolas/Repositories/HelloTriangleOpenGL/src/main.cpp",
   "file": "/Users/nicolas/Repositories/HelloTriangleOpenGL/src/main.cpp",
   "output": "CMakeFiles/OpenGLApp.dir/src/main.cpp.o"
 }

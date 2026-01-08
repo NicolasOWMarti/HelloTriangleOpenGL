@@ -110,18 +110,12 @@ int main() {
 
 
     float vertices[] = { // definerer vertex data som normalized device coordinates (NDC).
-    0.5f, 0.5f, 0.0f,   // top right
+    0.0f, 0.5f, 0.0f,   // top
     0.5f, -0.5f, 0.0f,   // bottom right
     -0.5f, -0.5f, 0.0f,   // bottom left
-    -0.5f,  0.5f, 0.0f,    // top left
-    0.0f, 0.9f, 0.0f, // top
-    0.9f, 0.0f, 0.0f    // right
     };
     unsigned int indices[] = { // definerer hvilket vertex skal bli koblet til hvilket vertex
-        0, 1, 3,
-        1, 2, 3,
-        0, 3, 4,
-        0, 3, 5,
+        0, 1, 2,
     };
 
 
@@ -130,7 +124,7 @@ int main() {
     // dette bruker man VAOs (vertex array objects) for.
 
     // ----- lager VAO og VBO: -----
-    unsigned int VAO; // definerer en vertex array object (VAO) som bevarer informasjon om hv
+    unsigned int VAO; // definerer en vertex array object (VAO) som bevarer informasjon om hvordam vertexene skal settes sammen.
     unsigned int VBO; // definerer en vertex buffer object (VBO) som bevarer vertex data på GPU memory.
     unsigned int EBO; // definerer en ellement buffer object (EBO) som forteller GPUen hvordan man setter sammen vertex dataen
 
