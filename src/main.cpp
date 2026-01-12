@@ -61,6 +61,10 @@ int main() {
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+    int nrAttributes;
+    glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
+    std::cout << "max vertex attribs: " << nrAttributes << std::endl;
+
 
     //-----compiler Vertex Shader-----
     unsigned int vertexShader; // lager en var som skal bevare vertex shaderen
