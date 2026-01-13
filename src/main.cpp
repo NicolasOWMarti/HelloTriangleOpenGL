@@ -1,24 +1,25 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
 #include <iostream>
 
+#include <fstream>
+#include <sstream>
+#include <string>
 
-const char *vertexShaderSource = // vertex shader i GLSL kode
-    "#version 330 core\n"
-    "layout (location = 0) in vec3 aPos;\n"
-    "void main()\n"
-    "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-    "}\0";
+#include <filesystem>
 
-const char *fragmentShaderSource = // fragment shader i GLSL kode
-    "#version 330 core\n"
-    "out vec4 FragColor;\n"
-    "void main()\n"
-    "{\n"
-    "   FragColor = vec4(1.0f, 0.7f, 0.2f, 1.0f);\n"
-    "}\n\0";
+std::string loadShaderSource(const char* filepath){
+    std::ifstream file(filepath);
+    if(!file.is_open()){
+        std::cerr << "ERROR: failed to open shader file: " << filepath << std::endl;
+        return "";
+    }
 
+    std::stringstream buffer; 
+    buffer << file.rdbuf();
+    return buffer.str();
+}
 
 void framebuffer_size_callback(GLFWwindow* window, int wigth, int height){
     glViewport(0, 0, wigth, height);
@@ -32,6 +33,8 @@ void processInput(GLFWwindow *window){ // tar inn hvilken vindu som parameter
 
 
 int main() {
+    std::cout << "working directory:" << std::filesystem::current_path() << std::endl;
+
     if (!glfwInit()) { // starter opp GLFW
     std::cout << "Failed to initialize GLFW" << std::endl;
     return -1;
@@ -67,9 +70,15 @@ int main() {
 
 
     //-----compiler Vertex Shader-----
+    std::cout << "does shader.vert exist?" << std::filesystem::exists("../src/shaders/shader.vert") << std::endl;
+    std::cout << "does shader.frag exist?" << std::filesystem::exists("../src/shaders/shader.frag") << std::endl;
+
+    std::string vertexShaderCode = loadShaderSource("../src/shaders/shader.vert"); // henter vertex shader koden som streng fra "shader/shader.vert"
+    const char* vertexShaderSource = vertexShaderCode.c_str(); // endrer vertex shader koden fra streng type til char type
+
     unsigned int vertexShader; // lager en var som skal bevare vertex shaderen
     vertexShader = glCreateShader(GL_VERTEX_SHADER); // gjør som at variabelen kan bevare vertex shaderen
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL); // fester shader koden til shader objektet
+    glShaderSource(vertexShader, 1, &vertexShaderSource , NULL); // fester shader koden til shader objektet
     glCompileShader(vertexShader);
 
     int success; // lager en var som skal sjekke om shaderen ble compilet riktig
@@ -82,6 +91,9 @@ int main() {
     }
 
     //-----compiler Fragment shader-----
+    std::string fragmentShaderCode = loadShaderSource("../src/shaders/shader.frag"); // henter fragment shader koden som streng fra "shader/shader.frag"
+    const char* fragmentShaderSource = fragmentShaderCode.c_str(); // endrer fragment shader koden fra streng type til char type
+
     unsigned int fragmentShader; // lager en var som skal bevare vertex shaderen
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER); // gjør som at variabelen kan bevare vertex shaderen
     glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL); // fester shader koden til shader objektet
@@ -94,6 +106,10 @@ int main() {
         std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
 
+    if (vertexShaderCode.empty() || fragmentShaderCode.empty()){
+        std::cout << "shader source missing. quiting code." << std::endl;
+        return -1;
+    }
     //-----kombinerer shaders til et program-----
     unsigned int shaderProgram; // laget en variabel for hele shader programmet
     shaderProgram = glCreateProgram();  // gjør variablet shader klar
@@ -180,7 +196,7 @@ int main() {
 
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO); // denne binder VAO en og VBOen OG EBOen!!!!!!
-        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 
         // check and call events and swap the buffers
         glfwSwapBuffers(window); // bytter frame buffers
