@@ -9,13 +9,14 @@
 
 #include <filesystem>
 
-std::string loadShaderSource(const char* filepath){
-    std::ifstream file(filepath);
-    if(!file.is_open()){
+std::string loadShaderSource(const char* filepath){ // funksjon som importerer text filer som en streng
+    std::ifstream file(filepath); // åpner textfilen og lagrer den i en var som heter file
+    if(!file.is_open()){ // sjekker om textfilen ble åpnet
         std::cerr << "ERROR: failed to open shader file: " << filepath << std::endl;
         return "";
     }
 
+    // retunerer file som buffer
     std::stringstream buffer; 
     buffer << file.rdbuf();
     return buffer.str();
@@ -130,9 +131,10 @@ int main() {
 
 
     float vertices[] = { // definerer vertex data som normalized device coordinates (NDC).
-    0.0f, 0.5f, 0.0f,   // top
-    0.5f, -0.5f, 0.0f,   // bottom right
-    -0.5f, -0.5f, 0.0f,   // bottom left
+    //positions             //color
+    0.0f, 0.5f, 0.0f,       1.0f, 0.0f, 0.0f,   // top
+    0.5f, -0.5f, 0.0f,      0.0f, 1.0f, 0.0f,   // bottom right
+    -0.5f, -0.5f, 0.0f,     0.0f, 0.0f, 1.0f    // bottom left
     };
     unsigned int indices[] = { // definerer hvilket vertex skal bli koblet til hvilket vertex
         0, 1, 2,
@@ -170,9 +172,18 @@ int main() {
         3,                  // 3 floats per vertex
         GL_FLOAT,           // type
         GL_FALSE,           // normalization
-        3 * sizeof(float),  // stride
+        6 * sizeof(float),  // stride
         (void*)0 
     );         // offset
+
+    glVertexAttribPointer(
+        1,
+        3,
+        GL_FLOAT,
+        GL_FALSE,
+        6 * sizeof(float),
+        (void*)(3* sizeof(float))
+    );
     
     glBufferData(   // uploader data til EBOen.
         GL_ELEMENT_ARRAY_BUFFER,
@@ -183,6 +194,7 @@ int main() {
     
     // ----- starter opp VBO(0): -----
     glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     // render loop:
@@ -195,6 +207,7 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(shaderProgram);
+
         glBindVertexArray(VAO); // denne binder VAO en og VBOen OG EBOen!!!!!!
         glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 
